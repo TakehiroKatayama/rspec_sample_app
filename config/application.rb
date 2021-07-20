@@ -35,4 +35,15 @@ module RspecSample
     # Don't generate system test files.
     config.generators.system_tests = nil
   end
+
+  module RspecSample
+  class Application < Rails::Application
+    # Initialize configuration defaults for originally generated Rails version.
+    config.load_defaults 6.0
+    # ***** 次を追加 *****
+    config.i18n.default_locale = :ja
+    # ***** 以上を追加 *****
+
+    # 略
+  end
 end
