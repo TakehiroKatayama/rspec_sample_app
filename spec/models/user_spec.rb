@@ -1,26 +1,18 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  describe '名前の表示' do
-    # 共通するパラメータを定義
-    let(:params) { { name: 'satou' } }
-    it '年齢1：ユーザーの名前が取得できること' do
-      # merge!メソッドで後からパラメータを追加
-      params.merge!(age: 1)
-      user = User.new(params)
-      expect(user.disp_name).to eq 'satouちゃん'
+  context 'データが条件を満たすとき' do
+    it '保存できる' do
+      user = build(:user)
+      expect(user.valid?).to eq true
     end
-    it '年齢15：ユーザーの名前が取得できること' do
-      # merge!メソッドで後からパラメータを追加
-      params.merge!(age: 15)
-      user = User.new(params)
-      expect(user.disp_name).to eq 'satou君'
-    end
-    it '年齢20：ユーザーの名前が取得できること' do
-      # merge!メソッドで後からパラメータを追加
-      params.merge!(age: 20)
-      user = User.new(params)
-      expect(user.disp_name).to eq 'satouさん'
+  end
+
+  context 'name が空のとき' do
+    it 'エラーが発生する' do
+      user = build(:user, name: '')
+      expect(user.valid?).to eq false
+      expect(user.errors.messages[:name]).to include 'を入力してください'
     end
   end
 end
