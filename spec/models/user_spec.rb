@@ -18,6 +18,7 @@ RSpec.describe User, type: :model do
         expect(user.errors.messages[:name]).to include 'を入力してください'
       end
     end
+
     context 'name が31文字以上のとき' do
       let(:user) { build(:user, name: 'a' * 31) }
       it 'エラーが発生する' do
