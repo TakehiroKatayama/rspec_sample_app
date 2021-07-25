@@ -5,6 +5,10 @@ FactoryBot.define do
     email { Faker::Internet.unique.email }
   end
 
+  trait :invalid do
+    email { nil }
+  end
+
   trait :infant do
     age { rand(6) }
   end
